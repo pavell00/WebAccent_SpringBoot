@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Древо документов</title>
+
+    <link rel="stylesheet" href="css/jqx.base.css" type="text/css"/>
+    <!--<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>-->
+
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="js/jqxcore.js"></script>
+    <script type="text/javascript" src="js/jqxdata.js"></script>
+    <script type="text/javascript" src="js/jqxbuttons.js"></script>
+    <script type="text/javascript" src="js/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="js/jqxdatatable.js"></script>
+    <script type="text/javascript" src="js/jqxtreegrid.js"></script>
+    <script>
+        $(document).ready(function () {
+            var employees = [
+                { "EmployeeID": 1, "FirstName": "Nancy",   "ReportsTo": 2 },
+                { "EmployeeID": 2, "FirstName": "Andrew",  "ReportsTo": null},
+                { "EmployeeID": 3, "FirstName": "Janet",   "ReportsTo": 2},
+                { "EmployeeID": 4, "FirstName": "Margaret","ReportsTo": 2},
+                { "EmployeeID": 5, "FirstName": "Steven",  "ReportsTo": 2},
+                { "EmployeeID": 6, "FirstName": "Michael", "ReportsTo": 5},
+                { "EmployeeID": 7, "FirstName": "Robert",  "ReportsTo": 5},
+                { "EmployeeID": 8, "FirstName": "Laura",   "ReportsTo": 2},
+                { "EmployeeID": 9, "FirstName": "Anne",    "ReportsTo": 5},
+                { "EmployeeID": 10, "FirstName": "Poll",  "ReportsTo": null},
+                { "EmployeeID": 11, "FirstName": "Mary",  "ReportsTo": 10}
+            ];
+
+            // prepare the data
+            var source =
+            {
+                dataType: "json",
+                dataFields: [
+                    { name: 'EmployeeID', type: 'number' },
+                    { name: 'ReportsTo', type: 'number' },
+                    { name: 'FirstName', type: 'string' }
+                ],
+                hierarchy:
+                {
+                    keyDataField: { name: 'EmployeeID' },
+                    parentDataField: { name: 'ReportsTo' }
+                },
+                id: 'EmployeeID',
+                localData: employees
+//                url:"/treeDocFolders"
+            };
+
+            var source2 =
+            {
+                dataType: "json",
+                dataFields: [
+                    { name: 'id', type: 'number' },
+                    { name: 'fldName', type: 'string' },
+                    { name: 'rootId', type: 'number' }
+                ],
+                hierarchy:
+                {
+                    keyDataField: { name: 'id' },
+                    parentDataField: { name: 'rootId' }
+                },
+                id: 'id',
+//                localData: employees
+//                url:"/treeDocFolders"
+            };
+
+//            var dataAdapter = new $.jqx.dataAdapter(source);
+//            // create Tree Grid
+//            $("#treeGrid").jqxTreeGrid(
+//                    {
+//                        width: 200,
+//                        source: dataAdapter,
+//                        sortable: true,
+//                        ready: function()
+//                        {
+//                            $("#treeGrid").jqxTreeGrid('expandRow', '2');
+//                        },
+//                        columns: [
+//                            { text: 'FirstName',  dataField: 'FirstName', width: 200 }
+//                        ]
+//                    });
+
+            console.log(JSON.stringify(source2));
+            var dataAdapter = new $.jqx.dataAdapter(source2);
+            // create Tree Grid
+//            $("#treeGrid").jqxTreeGrid(
+//                    {
+//                        width: 200,
+//                        source: dataAdapter,
+//                        sortable: true,
+//                        ready: function()
+//                        {
+//                            $("#treeGrid").jqxTreeGrid('expandRow', '2');
+//                        },
+//                        columns: [
+//                            { text: 'FirstName',  dataField: 'FirstName', width: 200 }
+//                        ]
+//                    });
+
+            $("#treeGrid_2").jqxTreeGrid(
+                    {
+                        width: 300,
+                        source: dataAdapter,
+                        sortable: true,
+                        ready: function()
+                        {
+                            $("#treeGrid_2").jqxTreeGrid('expandRow', '1');
+                        },
+                        columns: [
+                            { text: 'Folder Name',  dataField: 'fldName', width: 300 }
+                        ]
+                    });
+        });
+//        document.write("<p>scrip_run!!!! </p>");
+    </script>
+</head>
+<body class='default'>
+
+    <p>Древо документов</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1">
+                <div id="treeGrid"></div>
+            </div>
+            <div class="col-sm-2">
+                <p>dfdfdfd</p>
+            </div>
+            <div class="col-sm-3">
+                <div id="treeGrid_2"></div>
+            </div>
+        </div>
+    </div>
+
+
+        <!--<hr>-->
+        <!--<div class="col-sm-3">-->
+            <!--<h2>JSON local Data</h2>-->
+            <!--<div id="treeGrid"></div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-3">-->
+            <!--<h2>JSON remote Data</h2>-->
+            <!--<div id="treeGrid_2"></div>-->
+        <!--</div>-->
+
+
+</body>
+</html>

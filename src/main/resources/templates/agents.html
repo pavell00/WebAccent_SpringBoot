@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Agentse</title>
+</head>
+<body>
+    <h3>{{message}}</h3>
+    <table>
+        <tr>
+            <th>Имя</th>
+        </tr>
+        <tr th:each="agent: ${agents}">
+            <td th:text="${agent.name}" />
+        </tr>
+    </table>
+</body>
+</html>

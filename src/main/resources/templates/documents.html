@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Documents</title>
+</head>
+<body>
+    <h3>{{message}}</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Дата</th>
+            <th>Номер</th>
+            <th>Имя</th>
+        </tr>
+        <tr th:each="doc: ${documents}">
+            <td th:text="${doc.id}" />
+            <td th:text="${doc.docDate}"/>
+            <td th:text="${doc.docNo}"/>
+            <td th:text="${doc.docName}"/>
+        </tr>
+    </table>
+</body>
+</html>

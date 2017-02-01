@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>TEST</title>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap-treeview.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var json = '[' +
+                    '{' +
+                    '"text": "Parent 1",' +
+                    '"nodes": [' +
+                    '{' +
+                    '"text": "Child 1", "tags": [2],' +
+                    '"nodes": [' +
+                    '{' +
+                    '"text": "Grandchild 1"' +
+                    '},' +
+                    '{' +
+                    '"text": "Grandchild 2"' +
+                    '}' +
+                    ']' +
+                    '},' +
+                    '{' +
+                    '"text": "Child 2"' +
+                    '}' +
+                    ']' +
+                    '},' +
+                    '{' +
+                    '"text": "Parent 2", "tags": [10]' +
+                    '},' +
+                    '{' +
+                    '"text": "Parent 3"' +
+                    '},' +
+                    '{' +
+                    '"text": "Parent 4"' +
+                    '},' +
+                    '{' +
+                    '"text": "Parent 5"' +
+                    '}' +
+                    ']';
+            console.log(json);
+
+            var $tree = $('#treeview12').treeview({
+                showTags: true,
+                data: json
+            });
+
+            $('#treeview6').treeview({
+                color: "#428bca",
+                expandIcon: "glyphicon glyphicon-stop",
+                collapseIcon: "glyphicon glyphicon-unchecked",
+                nodeIcon: "glyphicon glyphicon-folder-open",
+                showTags: true,
+                data: json
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+    <h1>test</h1>
+        <div fragment="content">
+            <h2>JSON Data</h2>
+            <div id="treeview12" class=""></div>
+
+            <h2>Tags as Badges</h2>
+            <div id="treeview6" class=""></div>
+        </div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<title>Spring Boot CRUD Example</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+
+	<div class="row"  style="margin-bottom:50px;">
+		<div class="col-md-offset-2 col-md-8">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">Documents of period</h3>
+					<!--<tr th:text="${StartDate}"></tr>-->
+					<!--<tr th:text="${EndDate}"></tr>-->
+					<!--<form>-->
+						<!--<input type="date" name="sd1" class="form-control" th:value="${sd1}"/>-->
+						<!--<input type="date" name="sd2" class="form-control" th:value="${sd2}"/>-->
+						<!--<input type="submit" class="form-control" text="Go" />-->
+					<!--</form>-->
+
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<thead>
+						<tr class="btn-success">
+							<th>DocID</th>
+							<th>DocDate</th>
+							<th>DocName</th>
+							<th>DocNo</th>
+							<th>Operation</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:if="${#lists.isEmpty(allDocuments)}" class="btn-warning">
+							<td colspan="5" align="center">No Documents Registered Yet!!!</td>
+						</tr>
+						<tr th:each="doc : ${allDocuments}" align="center">
+							<td th:text="${doc.id}"></td>
+							<td th:text="${doc.docDate}"></td>
+							<td th:text="${doc.docName}"></td>
+							<td th:text="${doc.docNo}"></td>
+							<td align="center">
+								<a th:href="@{/employee/edit/{id}(id=${doc.id})}"><span class="glyphicon glyphicon-edit"></span></a> &nbsp; &nbsp;
+								<a th:href="@{/employee/delete/{id}(id=${doc.id})}"><span class="glyphicon glyphicon-trash"></span></a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
